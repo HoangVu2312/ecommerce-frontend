@@ -3,27 +3,51 @@
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+
+const baseQuery = fetchBaseQuery({
+    baseUrl: "http://localhost:4000",
+    prepareHeaders: (headers) => {
+      // Get the token from the local storage
+      const token = localStorage.getItem("token");
+  
+      if (token) {
+        // Add the token to the headers
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+  
+      return headers;
+    },
+  });
+
+
+
+
+
 // create the api  => update the local state by new data receive from API
 
 export const appApi = createApi({
     reducerPath: "appApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000" }),
+    baseQuery, //: fetchBaseQuery({ baseUrl: "http://localhost:4000" }),
     endpoints: (builder) => ({
-        signup: builder.mutation({
-            query: (user) => ({    // user ={name, email, password}
-                url: "/users/signup",
-                method: "POST",
-                body: user,
-            }),
-        }),
 
-        login: builder.mutation({
-            query: (user) => ({  // user ={name, email, password}
-                url: "/users/login",
-                method: "POST",
-                body: user,
-            }),
-        }),
+
+        // signup: builder.mutation({
+        //     query: (user) => ({    // user ={name, email, password}
+        //         url: "/users/signup",
+        //         method: "POST",
+        //         body: user,
+        //     }),
+        // }),
+
+        // login: builder.mutation({
+        //     query: (user) => ({  // user ={name, email, password}
+        //         url: "/users/login",
+        //         method: "POST",
+        //         body: user,
+        //     }),
+        // }),
+
+
         // send create product request to server
         createProduct: builder.mutation({
             query: (product) => ({
@@ -102,8 +126,8 @@ export const appApi = createApi({
 });
 
 export const {
-    useSignupMutation,  // use and get data at Component
-    useLoginMutation,
+    //useSignupMutation,  // use and get data at Component
+    //useLoginMutation,
     useCreateProductMutation,
     useAddToCartMutation,
     useRemoveFromCartMutation,

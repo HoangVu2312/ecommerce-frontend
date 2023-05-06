@@ -19,7 +19,9 @@ function NewProduct() {
     function handleRemoveImg(imgObj) {
         setImgToRemove(imgObj.public_id);
         axios
-            .delete(`/images/${imgObj.public_id}/`)
+            .delete(`/images/${imgObj.public_id}/`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
             .then((res) => {
                 setImgToRemove(null);
                 setImages((prev) => prev.filter((img) => img.public_id !== imgObj.public_id)); //remove the delete image out of current images array

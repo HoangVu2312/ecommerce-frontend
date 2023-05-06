@@ -19,6 +19,7 @@ function CategoryPage() {
   // fetch all products belong to this category to update local state
   useEffect(() => {
     setLoading(true);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`; // set the token as default header
     axios
       .get(`/products/category/${category}`)
       .then(({ data }) => {

@@ -31,12 +31,22 @@ function ProductPage() {
 
     // Async action => get data from server to update local state
     useEffect(() => {
-        // send request to server and get a product and other products with the same categoty from server to update local state
-        axios.get(`/products/${id}`).then(({ data }) => {
-            setProduct(data.product);
-            setSimilar(data.similar);
+        // Get the token from local storage
+        const token = localStorage.getItem('token');
+      
+        // Create an Axios instance with the Authorization header
+        const axiosInstance = axios.create({
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         });
-    }, [id]); // re-run when id in url change
+      
+        // Send request to server and get a product and other products with the same category from server to update local state
+        axiosInstance.get(`/products/${id}`).then(({ data }) => {
+          setProduct(data.product);
+          setSimilar(data.similar);
+        });
+      }, [id]); // re-run when id in url change
     
     // In case there is no product
     if (!product) {
@@ -51,7 +61,7 @@ function ProductPage() {
     };
 
     // make an array of img element to display in carousel
-    const images = product.pictures.map((picture) => <img className="product__carousel--image" src={picture.url} onDragStart={handleDragStart} />);
+    const images = product.pictures.map((picture) => <img className="product__carousel--image" src={picture.url} onDragStart={handleDragStart} alt="prod"/>);
 
     // create an array of div items to display at second carousel
     let similarProducts = [];  // all items in this array will be created first, before carousel use them to display

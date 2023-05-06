@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useSignupMutation } from '../services/appApi';
+import { useSignupMutation } from '../services/authApi';
 import "./Signup.css"
 function Signup() {
 

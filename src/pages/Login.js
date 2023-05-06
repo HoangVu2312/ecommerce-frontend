@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useLoginMutation } from '../services/appApi';
+import { useLoginMutation } from '../services/authApi';
 
 function Login() {
 
