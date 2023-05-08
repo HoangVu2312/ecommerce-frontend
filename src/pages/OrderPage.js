@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Badge, Container, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import axios from "../axios";
 import Loading from "../components/Loading";
+import { ThemeContext } from "../App";
 
 
 function OrdersPage() {
+    // get the global theme
+    const { theme} = useContext(ThemeContext);
 
     // get current logged-in user
     const user = useSelector((state) => state.user);
@@ -27,7 +30,7 @@ function OrdersPage() {
                 setLoading(false);
                 console.log(e);
             });
-    }, []);
+    }, [user._id]);
 
     if (loading) {
         return <Loading />;
@@ -38,9 +41,9 @@ function OrdersPage() {
     }
 
     return (
-        <Container>
+        <Container style={{ height: '100vh' }}>
             <h1 className="text-center">Your orders</h1>
-            <Table responsive striped bordered hover>
+            <Table responsive bordered hover id={theme} >
                 <thead>
                     <tr>
                         <th>#</th>

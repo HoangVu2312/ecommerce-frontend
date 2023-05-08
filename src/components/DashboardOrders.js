@@ -21,7 +21,16 @@ function OrdersAdminPage() {
     const handleClose = () => setShow(false);
 
     function markShipped(orderId, ownerId) {
-        axios
+        // Get the token from local storage
+        const token = localStorage.getItem('token');
+      
+        // Create an Axios instance with the Authorization header
+        const axiosInstance = axios.create({
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        axiosInstance
             .patch(`/orders/${orderId}/mark-shipped`, { ownerId }) // send request to update the "status" property of order
             .then(({ data }) => setOrders(data))
             .catch((e) => console.log(e));
@@ -43,7 +52,16 @@ function OrdersAdminPage() {
 
     useEffect(() => {
         setLoading(true);
-        axios
+        // Get the token from local storage
+        const token = localStorage.getItem('token');
+      
+        // Create an Axios instance with the Authorization header
+        const axiosInstance = axios.create({
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        axiosInstance
             .get("/orders")
             .then(({ data }) => {
                 setLoading(false);

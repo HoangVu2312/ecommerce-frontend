@@ -3,7 +3,7 @@
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-
+// Include token in every endpoints requests
 const baseQuery = fetchBaseQuery({
     baseUrl: "http://localhost:4000",
     prepareHeaders: (headers) => {
@@ -27,26 +27,46 @@ const baseQuery = fetchBaseQuery({
 
 export const appApi = createApi({
     reducerPath: "appApi",
-    baseQuery, //: fetchBaseQuery({ baseUrl: "http://localhost:4000" }),
+    baseQuery, 
     endpoints: (builder) => ({
-
-
-        // signup: builder.mutation({
-        //     query: (user) => ({    // user ={name, email, password}
-        //         url: "/users/signup",
-        //         method: "POST",
-        //         body: user,
-        //     }),
-        // }),
-
-        // login: builder.mutation({
-        //     query: (user) => ({  // user ={name, email, password}
-        //         url: "/users/login",
-        //         method: "POST",
-        //         body: user,
-        //     }),
-        // }),
-
+        login: builder.mutation({
+            query: ({ email, password }) => ({
+              url: '/users/login',
+              method: 'POST',
+              body: { email, password },
+            }),
+            // transforms the response from the server before returning it to the client
+            transformResponse: (response) => {
+              // Extract the token and user data from the response
+              const { token, user } = response;
+      
+              // Save the token to local storage
+              localStorage.setItem('token', token);
+      
+              // Return only the user data
+              return user;
+            },
+        }),
+      
+          // Define the sign up endpoint
+        signup: builder.mutation({
+            query: ({ name, email, password }) => ({
+              url: '/users/signup',
+              method: 'POST',
+              body: { name, email, password },
+            }),
+            // transforms the response from the server before returning it to the client
+            transformResponse: (response) => {
+              // Extract the token and user data from the response
+              const { token, user } = response;
+      
+              // Save the token to local storage
+              localStorage.setItem('token', token);
+      
+              // Return only the user data
+              return user;
+            },
+        }),
 
         // send create product request to server
         createProduct: builder.mutation({
@@ -126,8 +146,8 @@ export const appApi = createApi({
 });
 
 export const {
-    //useSignupMutation,  // use and get data at Component
-    //useLoginMutation,
+    useSignupMutation,  // use and get data at Component
+    useLoginMutation,
     useCreateProductMutation,
     useAddToCartMutation,
     useRemoveFromCartMutation,

@@ -49,7 +49,7 @@ function Navigation() {
 
   return (
     <Navbar expand="lg">
-      <Container>
+      <Container >
         <LinkContainer to="/">
           <Navbar.Brand id={theme}>Bon-Luna</Navbar.Brand>
         </LinkContainer>
@@ -111,7 +111,8 @@ function Navigation() {
 
                 <NavDropdown
                   title={`${user.name}`}
-                  id={`basic-nav-dropdown ${theme}`}
+                  // id={`basic-nav-dropdown ${theme}`}
+                  id={theme}
                 >
                   {/* that user is admin */}
                   {user.isAdmin && (

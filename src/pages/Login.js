@@ -1,11 +1,16 @@
 // component for login page
 
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useLoginMutation } from '../services/authApi';
+import { useLoginMutation } from '../services/appApi';
+import "./Signup.css"
+import { ThemeContext } from '../App';
+
 
 function Login() {
+    // get the global theme
+   const { theme} = useContext(ThemeContext);
 
     // create local state
     const [email, setEmail] = useState("");
@@ -24,8 +29,8 @@ function Login() {
         <Container>
             <Row>
                 
-                <Col md={6} className="login__form--container">
-                    <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
+                <Col md={6} className="login__form--container" id={theme}>
+                    <Form style={{ width: "100%" }} onSubmit={handleSubmit} >
                         <h1>Login to your account</h1>
                         {isError && <Alert variant="danger">{error.data}</Alert>} 
                         <Form.Group>

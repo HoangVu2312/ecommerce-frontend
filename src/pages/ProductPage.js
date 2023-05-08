@@ -14,7 +14,9 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useAddToCartMutation } from "../services/appApi";
 import ToastMessage from "../components/ToastMessage";
 
+
 function ProductPage() {
+    
 
     const { id } = useParams(); // get the id when user click to preview image (auto-created by moongoose)
     const user = useSelector((state) => state.user); // check current logged-in user
@@ -92,7 +94,7 @@ function ProductPage() {
                     </LinkContainer>
                     
                     <p className="product__price my-2">${product.price}</p>
-                    <p style={{ textAlign: "justify" }} className="py-3">
+                    <p style={{ textAlign: "justify-content-center" }} className="py-3">
                         <strong>Description:</strong> {product.description}
                     </p>
 

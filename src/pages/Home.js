@@ -5,7 +5,7 @@ import categories from '../categories';
 import { LinkContainer} from "react-router-bootstrap";
 import { Col, Row } from 'react-bootstrap';
 import "./Home.css";
-import homeBanner from "../images/main-banner.png"
+//import homeBanner from "../images/main-banner.png"
 import saleBanner from "../images/sale-banner.png"
 import { useDispatch, useSelector } from 'react-redux';
 import axios from "../axios";  // instance of axios with defined server url
@@ -28,7 +28,9 @@ function Home() {
 
   return (
     <div >
-        <img src={homeBanner} className="home-banner" alt='home-banner'/>
+        {/* Home banner */}
+        <div className="home-banner"></div>
+        
 
         <div className="featured-products-container container mt-4">
                 <h2>Last products</h2>

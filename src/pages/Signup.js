@@ -1,10 +1,17 @@
 //rfce
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useSignupMutation } from '../services/authApi';
+import { useSignupMutation } from '../services/appApi';
 import "./Signup.css"
+import { ThemeContext } from '../App';
+
+
+
+
 function Signup() {
+     // get the global theme
+   const { theme} = useContext(ThemeContext);
 
     // create local state
     const [name, setName] = useState("");
@@ -23,7 +30,7 @@ function Signup() {
         <Container>
             <Row>
                 
-                <Col md={6} className="signup__form--container">
+                <Col md={6} className="signup__form--container" id={theme}>
                     <Form style={{ width: "100%" }} onSubmit={handleSignup}>
                         <h1>Create a new account</h1>
 

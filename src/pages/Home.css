@@ -13,10 +13,33 @@
     transition: all 0.3s;
     margin-top: 30px;
 }
+
 .home-banner {
+    background-image: url("../images/main-banner.png");
     background-color: grey;
-    width: 100%;
-}
+    height: 400px; /* set a default height for the banner */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-x: hidden; /* prevent horizontal scrolling */
+  
+    /* add the following properties to center the banner vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%; /* add this property to prevent horizontal scrolling */
+  }
+  
+  @media (max-width: 400px) {
+    .home-banner {
+      background-image: url("../images/main-banner-small.png");
+      height: 200px; /* set a smaller height for the banner on smaller screens */
+    }
+  }
+  
+  
+  
+  
 
 .card {
     border: none !important;
@@ -38,3 +61,4 @@ img.card-img-top.product-preview-img {
 :focus {
     outline: none;
 }
+

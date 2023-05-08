@@ -1,23 +1,60 @@
 /* Style for 2 components Signup and Login */
 .signup__image--container {
-    background-image: url(https://images.unsplash.com/photo-1612690669207-fed642192c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8dGVjaHxlbnwwfDF8MHx3aGl0ZXw%3D&auto=format&fit=crop&w=800&q=60);
+    background-image: url(https://images.unsplash.com/photo-1661956602926-db6b25f75947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=698&q=60);
     height: 100vh;
     background-size: cover;
+    box-shadow: 0 0 60px 0 rgb(0 0 0 / 10%);
+    border-radius: .5rem;
+
 }
 
-.signup__form--container,
+.signup__form--container {
+        width: 50%;
+        text-align: center;
+        border-radius: .5rem;
+        background: #fff;
+        box-shadow: 0 0 60px 0 rgb(0 0 0 / 10%);
+        padding: 30px 45px;
+        transform: translateY(0);
+        transition: all .5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+    
+}
+
+.signup__form--container:hover{
+    transform: translateY(-20px);
+}
+
+
 .login__form--container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    justify-content: center;
+    width: 50%;
+        text-align: center;
+        border-radius: .5rem;
+        background: #fff;
+        box-shadow: 0 0 60px 0 rgb(0 0 0 / 10%);
+        padding: 30px 45px;
+        transform: translateY(0);
+        transition: all .5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
 }
 
+.login__form--container:hover {
+    transform: translateY(-20px);
+}
 .login__image--container {
     background-image: url(https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
     height: 100vh;
     background-size: cover;
+    box-shadow: 0 0 60px 0 rgb(0 0 0 / 10%);
+    border-radius: .5rem;
 }
 :focus {
     outline: none;

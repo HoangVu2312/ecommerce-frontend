@@ -1,16 +1,19 @@
 import { Elements } from "@stripe/react-stripe-js";  
 import { loadStripe } from "@stripe/stripe-js";
-import React from "react";
+import React, { useContext } from "react";
 import { Alert, Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import CheckoutForm from "../components/CheckoutForm";
 import { useIncreaseCartProductMutation, useDecreaseCartProductMutation, useRemoveFromCartMutation } from "../services/appApi";
 import "./CartPage.css";
+import { ThemeContext } from "../App";
 
 // Configure publishable key
 const stripePromise = loadStripe("pk_test_51MtaxhBc8RZOIqX1sTv1wE92GnLay80BAbzYFgCVb6Bl9p5punvzwbjdDWpfKvpBFwD7sScaVMHhDeyzU1uix09Q0014P2hapP");
 
 function CartPage() {
+    // get the global theme
+    const { theme} = useContext(ThemeContext);
 
     // get the current logged-in user
     const user = useSelector((state) => state.user);
@@ -52,9 +55,9 @@ function CartPage() {
 
                 {/* Right: all the products in this user's cart */}
                 {cart.length > 0 && (
-                    <Col md={5}>
+                    <Col md={5} >
                         <>
-                            <Table responsive="sm" className="cart-table">
+                            <Table responsive="sm" className="cart-table" id={theme}>
                                 <thead>
                                     <tr>
                                         <th>&nbsp;</th> {/*this is empty space*/}
@@ -72,7 +75,7 @@ function CartPage() {
                                             {!isLoading && <i className="fa fa-times" style={{ margin: 35, cursor: "pointer", fontSize: "25px"}} onClick={() => removeFromCart({ productId: item._id, price: item.price, userId: user._id })}></i>}
                                             </td>
                                             <td>
-                                                <img src={item.pictures[0].url} style={{ width: 100, height: 100, objectFit: "cover" }} />
+                                                <img src={item.pictures[0].url} style={{ width: 100, height: 100, objectFit: "cover" }} alt="prod"/>
                                             </td>
                                             <td><p>${item.price}</p></td>
                                             <td>
