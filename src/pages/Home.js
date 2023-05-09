@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from "../axios";  // instance of axios with defined server url
 import { updateProducts } from '../features/productSlice';
 import ProductPreview from '../components/ProductPreview';
+import Footer from '../components/Footer';
 
 
 function Home() {
@@ -48,9 +49,7 @@ function Home() {
         </div>
 
         {/* sale banner */}
-        <div className="sale__banner--container mt-4" >
-            <img src={saleBanner} alt='sale-banner'/>
-        </div>
+        <div className="sale-banner" ></div>
 
         {/* categories is an array imported from categories component */}
         <div className="recent-products-container container mt-4">
@@ -68,6 +67,7 @@ function Home() {
                 ))}
             </Row>
         </div>
+        <div><ooter/></div>
     </div>
   )
 }
