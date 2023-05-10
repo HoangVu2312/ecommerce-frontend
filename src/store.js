@@ -32,6 +32,7 @@ const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([thunk, appApi.middleware]),
+    devTools: false
 });
 
 export default store;

@@ -8,6 +8,11 @@ import store from "./store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistStore from "redux-persist/es/persistStore";
+//import for deploy
+import {disableReactDevTools} from "@fvilers/disable-react-devtools"
+
+if(ProcessingInstruction.env.NODE_ENV === 'production') disableReactDevTools();
+
 
 // store to persit
 const persistedStore = persistStore(store);
