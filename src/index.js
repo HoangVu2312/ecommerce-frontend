@@ -11,7 +11,7 @@ import persistStore from "redux-persist/es/persistStore";
 //import for deploy
 import {disableReactDevTools} from "@fvilers/disable-react-devtools"
 
-if(ProcessingInstruction.env.NODE_ENV === 'production') disableReactDevTools();
+if(process.env.NODE_ENV === 'production') disableReactDevTools();
 
 
 // store to persit
