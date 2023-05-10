@@ -58,8 +58,9 @@ function ProductPage() {
     // defines the responsive behavior of the carousel
     const responsive = {
         0: { items: 1 },
-        568: { items: 2 },  //568px
-        1024: { items: 3 }, // 1024px
+        360: { items: 2 },
+        568: { items: 3 },  //568px
+        1024: { items: 4 }, // 1024px
     };
 
     // make an array of img element to display in carousel
@@ -125,7 +126,7 @@ function ProductPage() {
 
             <div className="my-4">
                 <h2>Similar Products</h2>
-                <div className="d-flex justify-content-center align-items-center flex-wrap">
+                <div className="d-flex justify-content-center align-items-center flex-wrap ">
                     <AliceCarousel mouseTracking items={similarProducts} responsive={responsive} controlsStrategy="alternate" />
                 </div>
             </div>
