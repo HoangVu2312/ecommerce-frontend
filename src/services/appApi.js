@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Include token in every endpoints requests
 const baseQuery = fetchBaseQuery({
-    baseUrl: "https://ecommerce-server.onrender.com",
+    baseUrl: "https://ecommerce-server-wd76.onrender.com",
     prepareHeaders: (headers) => {
       // Get the token from the local storage
       const token = localStorage.getItem("token");
