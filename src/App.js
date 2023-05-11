@@ -42,7 +42,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = io("ws://localhost:4000");
+    const socket = io('https://ecommerce-server-wd76.onrender.com');
+
 
     // order-shipped notification (for client)
     socket.off("notification").on("notification", (msgObj, user_id) => {
