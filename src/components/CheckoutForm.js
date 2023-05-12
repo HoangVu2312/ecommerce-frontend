@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useCreateOrderMutation } from "../services/appApi";
 
 function CheckoutForm() {
+    //import required element
     const stripe = useStripe();
     const elements = useElements();
     const user = useSelector((state) => state.user);
