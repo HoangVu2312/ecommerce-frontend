@@ -26,7 +26,7 @@ function CheckoutForm() {
         setPaying(true);
         
          // Makes a POST request to the server to create a payment intent and returns the client secret
-        const { client_secret } = await fetch("http://localhost:4000/create-payment", {
+        const { client_secret } = await fetch("https://ecommerce-server-wd76.onrender.com/create-payment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
