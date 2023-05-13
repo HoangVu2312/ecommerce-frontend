@@ -67,7 +67,7 @@ function Home() {
                 ))}
             </Row>
         </div>
-        <div><ooter/></div>
+        <div><Footer/></div>
     </div>
   )
 }
