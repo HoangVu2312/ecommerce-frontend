@@ -19,7 +19,7 @@
     background-color: grey;
     height: 600px; 
     background-size: cover;
-    background-position: center;
+    background-position: center left;
     background-repeat: no-repeat;
     overflow-x: hidden; /* prevent horizontal scrolling */
   
