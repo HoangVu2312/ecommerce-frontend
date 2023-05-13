@@ -34,7 +34,7 @@
   @media (max-width: 580px) {
     .home-banner {
       background-image: url("../images/main-banner-small.png");
-      height: 250px; /* set a smaller height for the banner on smaller screens */
+      height: 220px; /* set a smaller height for the banner on smaller screens */
       background-size: cover;
       background-position: center top;
     }
