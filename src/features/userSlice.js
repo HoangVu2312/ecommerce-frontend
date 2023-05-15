@@ -12,7 +12,7 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         logout: () => {
-            //localStorage.removeItem('token');
+            localStorage.removeItem('token');
             return initialState
         },
         // update notifications
