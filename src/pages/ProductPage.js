@@ -20,9 +20,7 @@ function ProductPage() {
 
     const { id } = useParams(); // get the id when user click to preview image (auto-created by moongoose)
     const user = useSelector((state) => state.user); // check current logged-in user
-    const products = useSelector((state) => state?.products);
 
-    
     // set up local state
     const [product, setProduct] = useState(null);
     const [similar, setSimilar] = useState(null);
@@ -32,36 +30,25 @@ function ProductPage() {
 
     const handleDragStart = (e) => e.preventDefault(); // stop broser's defaut => allow to drag images to slide 
 
-      useEffect(() => {
-    // find property in store based on id
-    const product = products.find((p) => p._id === id); // local property => not relate to property
-
-    if (product) {
-      setProduct(products);
-      const similarProductsFromStore = products.filter((p) => p.category === product.category && p._id !== product._id);
-      setSimilar(similarProductsFromStore);
-    }
-  }, [id]);
-
 
     // Async action => get data from server to update local state
-    // useEffect(() => {
-    //     // Get the token from local storage
-    //     const token = localStorage.getItem('token');
+    useEffect(() => {
+        // Get the token from local storage
+        const token = localStorage.getItem('token');
       
-    //     // Create an Axios instance with the Authorization header
-    //     const axiosInstance = axios.create({
-    //       headers: {
-    //         Authorization: `Bearer ${token}`
-    //       }
-    //     });
+        // Create an Axios instance with the Authorization header
+        const axiosInstance = axios.create({
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
       
-    //     // Send request to server and get a product and other products with the same category from server to update local state
-    //     axiosInstance.get(`/products/${id}`).then(({ data }) => {
-    //       setProduct(data.product);
-    //       setSimilar(data.similar);
-    //     });
-    //   }, [id]); // re-run when id in url change
+        // Send request to server and get a product and other products with the same category from server to update local state
+        axiosInstance.get(`/products/${id}`).then(({ data }) => {
+          setProduct(data.product);
+          setSimilar(data.similar);
+        });
+      }, [id]); // re-run when id in url change
     
     // In case there is no product
     if (!product) {
