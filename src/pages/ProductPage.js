@@ -36,7 +36,7 @@ function ProductPage() {
     // find property in store based on id
     const product = products.find((p) => p._id === id); // local property => not relate to property
 
-    if (property) {
+    if (product) {
       setProduct(products);
     }
   }, [id]);
