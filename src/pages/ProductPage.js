@@ -38,6 +38,8 @@ function ProductPage() {
 
     if (product) {
       setProduct(products);
+      const similarProductsFromStore = products.filter((p) => p.category === product.category && p._id !== product._id);
+      setSimilar(similarProductsFromStore);
     }
   }, [id]);
 
