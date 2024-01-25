@@ -63,8 +63,8 @@ function CategoryPage() {
 
 
       
-      {productsSearch.length === 0 ? (
-        <h1>No products to show</h1>
+      {productsSearch && productsSearch.length === 0 ? (
+        <h1>Just a second</h1>
       ) : (
         <Container>
           <Row>
