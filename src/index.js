@@ -8,6 +8,8 @@ import store from "./store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistStore from "redux-persist/es/persistStore";
+import CartLoader from './components/CartLoader.js';
+
 //import for deploy
 import {disableReactDevTools} from "@fvilers/disable-react-devtools"
 
@@ -20,7 +22,7 @@ const persistedStore = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <Provider store={store}>
-        <PersistGate loading={<div>Loading...</div>} persistor={persistedStore}>
+        <PersistGate loading={<CartLoader />} persistor={persistedStore}>
             <App />
         </PersistGate>
     </Provider>
