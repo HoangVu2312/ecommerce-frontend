@@ -1,0 +1,50 @@
+.cart-container {
+
+    min-height: 100vh;
+    background: #fdf471;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 100vw;
+    position: relative;
+}
+
+.stroke {
+    width: 420px;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.stroke::after {
+    content: '\f07a';
+    position: absolute;
+    bottom: -10px;
+    left: 0%;
+    font-family: fontAwesome;
+    position: absolute;
+    color: #ff3c00;
+    font-size: 50px;
+    animation: animate2 5s linear infinite;
+    z-index: 100;
+}
+
+
+@keyframes animate2 {
+    0% {
+
+        transform: translateX(0%);
+    }
+    30% {
+        transform: translateX(300%);
+    }
+    70% {
+        transform: translateX(700%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
