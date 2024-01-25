@@ -1,13 +1,9 @@
-// this component display all information of product, when user click to preview images
-
-import axios from "../axios";
 import React, { useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import { Container, Row, Col, Badge, ButtonGroup, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Badge, ButtonGroup, Form, Button, Alert } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Loading from "../components/Loading";
 import SimilarProduct from "../components/SimilarProduct";
 import "./ProductPage.css";
 import { LinkContainer } from "react-router-bootstrap";
@@ -19,7 +15,8 @@ function ProductPage() {
     
 
     const { id } = useParams(); // get the id when user click to preview image (auto-created by moongoose)
-    const user = useSelector((state) => state.user); // check current logged-in user
+    const user = useSelector((state) => state?.user); // check current logged-in user
+    const storeProducts = useSelector((state) => state?.products);
 
     // set up local state
     const [product, setProduct] = useState(null);
@@ -31,29 +28,22 @@ function ProductPage() {
     const handleDragStart = (e) => e.preventDefault(); // stop broser's defaut => allow to drag images to slide 
 
 
-    // Async action => get data from server to update local state
     useEffect(() => {
-        // Get the token from local storage
-        const token = localStorage.getItem('token');
-      
-        // Create an Axios instance with the Authorization header
-        const axiosInstance = axios.create({
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-      
-        // Send request to server and get a product and other products with the same category from server to update local state
-        axiosInstance.get(`/products/${id}`).then(({ data }) => {
-          setProduct(data.product);
-          setSimilar(data.similar);
-        });
-      }, [id]); // re-run when id in url change
+        // find property in store based on id
+        const product = storeProducts.find((p) => p._id === id); // local property => not relate to property
+        
+        if (product) {
+            setProduct(product);
+            const similarProducts = storeProducts.filter((p) => p.category === product.category);
+            setSimilar(similarProducts);
+
+        }
+      }, [id, storeProducts]);
     
-    // In case there is no product
-    if (!product) {
-        return <Loading />;
+      if (!product) {
+        return <Alert>product is gone</Alert>
     }
+    
 
     // defines the responsive behavior of the carousel
     const responsive = {
